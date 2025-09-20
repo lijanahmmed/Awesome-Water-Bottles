@@ -12,12 +12,9 @@ const Bottles = ({ bottlesPromise }) => {
     // useEffect
     useEffect(() => {
         const storedCartIds = getStoreCart();
-        // console.log(storedCartIds, bottles);
-
         const storedCart = [];
 
         for (const id of storedCartIds) {
-            // console.log(id);
             const cartBottle = bottles.find(bottle => bottle.id === id);
             if (cartBottle) {
                 storedCart.push(cartBottle);
@@ -31,7 +28,6 @@ const Bottles = ({ bottlesPromise }) => {
 
 
     const handleAddToCart = (bottle) => {
-        // console.log('bottle will be added to the cart', bottle);
         const newCart = [...cart, bottle];
         setCart(newCart);
 
@@ -40,14 +36,11 @@ const Bottles = ({ bottlesPromise }) => {
     }
 
     const handleRemoveFromCart = id => {
-        console.log('remove item from the cart', id)
 
         const remainingCart = cart.filter(bottle => bottle.id !== id);
         setCart(remainingCart);
         removeFromCart(id);
     }
-
-    // console.log(bottles);
 
     return (
         <div>
