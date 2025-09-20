@@ -1,7 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
 import Bottle from '../Bottle/Bottle';
 import './Bottles.css';
-import { addToStoredCart, getStoreCart, removeFromCart } from '../../utilities/localstorage';
 import Cart from '../Cart/Cart';
 
 const Bottles = ({ bottlesPromise }) => {
@@ -11,18 +10,11 @@ const Bottles = ({ bottlesPromise }) => {
 
     // useEffect
     useEffect(() => {
-        const storedCartIds = getStoreCart();
         // console.log(storedCartIds, bottles);
 
         const storedCart = [];
 
-        for (const id of storedCartIds) {
-            // console.log(id);
-            const cartBottle = bottles.find(bottle => bottle.id === id);
-            if (cartBottle) {
-                storedCart.push(cartBottle);
-            }
-        }
+        
 
         console.log('stored cart', storedCart);
         setCart(storedCart);
@@ -36,7 +28,7 @@ const Bottles = ({ bottlesPromise }) => {
         setCart(newCart);
 
         // save the bottle id in the storage
-        addToStoredCart(bottle.id);
+        
     }
 
     const handleRemoveFromCart = id => {
@@ -44,7 +36,7 @@ const Bottles = ({ bottlesPromise }) => {
 
         const remainingCart = cart.filter(bottle => bottle.id !== id);
         setCart(remainingCart);
-        removeFromCart(id);
+        
     }
 
     // console.log(bottles);
